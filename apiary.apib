@@ -1,0 +1,223 @@
+FORMAT: 1A
+
+# Farmacia en Linea
+
+API para la interacción con el servicio de farmacia en linea
+
+## Sucursales
+
+Una farmacia tiene los siguientes atributos.
+
+- identificador de la sucursal
+- nombre de la sucursal
+- zona de la sucursal
+
+### Obtener todas las sucursales [GET /farmacia]
+
+Con este recurso...
+
++ Response 200 (application/json)
+
+                {
+                    "sucursales": [
+                        {
+                            "idsucursal": 1,
+                            "nombre": "Farmacia Donceles del Centro",
+                            "zona": "Centro"
+                        }, {
+                            "idsucursal": 2,
+                            "nombre": "Farmacia PeriNorte",
+                            "zona": "Norte"
+                        }, {
+                            "idsucursal": 3,
+                            "nombre": "Farmacia Coyoacan",
+                            "zona": "Sur"
+                        }, {
+                            "idsucursal": 4,
+                            "nombre": "Farmacia Tacubaya",
+                            "zona": "Poniente"
+                        }, {
+                            "idsucursal": 5,
+                            "nombre": "Farmacia Sol Naciente",
+                            "zona": "Oriente"
+                        }
+                    ]
+                }
+                
+### Obtener detalles de farmacia Centro [GET /farmacia/1]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 1,
+                    "nombre": "Farmacia Donceles del Centro",
+                    "zona": "Centro"
+                }
+                        
+### Obtener detalles de farmacia Norte [GET /farmacia/2]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 2,
+                    "nombre": "Farmacia PeriNorte",
+                    "zona": "Norte"
+                }
+
+### Obtener detalles de farmacia Sur [GET /farmacia/3]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 3,
+                    "nombre": "Farmacia Coyoacan",
+                    "zona": "Sur"
+                }
+                
+### Obtener detalles de farmacia Poniente [GET /farmacia/4]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 4,
+                    "nombre": "FFarmacia Tacubaya",
+                    "zona": "Poniente"
+                }
+                
+### Obtener detalles de farmacia Oriente [GET /farmacia/5]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 5,
+                    "nombre": "Farmacia Sol Naciente",
+                    "zona": "Oriente"
+                }
+                
+### Obtener Farmacia cercana a CP 11000 [GET /farmacia/cp/11000]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 1,
+                    "nombre": "Farmacia Donceles del Centro",
+                    "zona": "Centro"
+                }
+                
+### Obtener detalles de farmacia Oriente [GET /farmacia/cp/09730]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 5,
+                    "nombre": "Farmacia Sol Naciente",
+                    "zona": "Oriente"
+                }
+                
+### Obtener detalles de farmacia Oriente [GET /farmacia/cp/54020]
+
++ Response 200 (application/json)
+
+                {
+                    "idsucursal": 2,
+                    "nombre": "Farmacia PeriNorte",
+                    "zona": "Norte"
+                }
+                
+### Obtener inventario de Aspirinas [GET /farmacia/inventario/aspirina]
+
++ Response 200 (application/json)
+
+                {
+                  "sucursales": [
+                      {
+                        "idsucursal": "1",
+                        "nombre": "Farmacia Donceles del Centro",
+                        "zona": "Centro",
+                        "cantidad": "7"
+                      },
+                      {
+                        "idsucursal": "2",
+                        "nombre": "Farmacia PeriNorte",
+                        "zona": "Norte",
+                        "cantidad": "15"
+                      },
+                      {
+                        "idsucursal": "3",
+                        "nombre": "Farmacia Coyoacan",
+                        "zona": "Sur",
+                        "cantidad": "4"
+                      },
+                      {
+                        "idsucursal": "4",
+                        "nombre": "Farmacia Tacubaya",
+                        "zona": "Poniente",
+                        "cantidad": "12"
+                      },
+                      {
+                        "idsucursal": "5",
+                        "nombre": "Farmacia Sol Naciente",
+                        "zona": "Oriente",
+                        "cantidad": "0"
+                      }
+                    ]
+                }
+                
+### Obtener inventario de Paracetamol [GET /farmacia/inventario/paracetamol]
+
++ Response 200 (application/json)
+
+                {
+                  "sucursales": [
+                      {
+                        "idsucursal": "1",
+                        "nombre": "Farmacia Donceles del Centro",
+                        "zona": "Centro",
+                        "cantidad": "1"
+                      },
+                      {
+                        "idsucursal": "2",
+                        "nombre": "Farmacia PeriNorte",
+                        "zona": "Norte",
+                        "cantidad": "6"
+                      },
+                      {
+                        "idsucursal": "3",
+                        "nombre": "Farmacia Coyoacan",
+                        "zona": "Sur",
+                        "cantidad": "17"
+                      },
+                      {
+                        "idsucursal": "4",
+                        "nombre": "Farmacia Tacubaya",
+                        "zona": "Poniente",
+                        "cantidad": "8"
+                      },
+                      {
+                        "idsucursal": "5",
+                        "nombre": "Farmacia Sol Naciente",
+                        "zona": "Oriente",
+                        "cantidad": "7"
+                      }
+                    ]
+                }
+                
+### Crear Pedido [POST /farmacia/pedido]
+
++ Request (application/json)
+
+        [
+            {
+              "pedido": {
+                "idSucursal": "1",
+                "producto": "aspirina",
+                "cantidad": "3"
+              }
+            }
+        ]
+        
++ Response 200 (application/json)
+
+                {
+                    "mensaje": "Su pedido se ha colocado correctamente. Pronto le avisaremos en qué horario recogerlo"
+                }
