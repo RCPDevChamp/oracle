@@ -1,6 +1,6 @@
 FORMAT: 1A
 
-# API - Institución Financiera
+# API - SPS Bank. This is just a demo.
 
 SPS Bank API.
 
@@ -8,11 +8,8 @@ SPS Bank API.
 
 Index of API SPS Financial resources.
 
-## Group Branches
 
-Resources for Branches.
-
-## Branches [/spsbank/{branchID}]
+## Branches [/spsbank]
 
 An SPS Financial has the following fields:
 
@@ -20,9 +17,6 @@ An SPS Financial has the following fields:
 - Branch Name
 - Branch Zone
 - URL
-
-+ Parameters
-    + branchID: 1 (required, string) - Branch ID
 
 ### Get all Branches [GET /spsbank]
 
@@ -32,23 +26,29 @@ An SPS Financial has the following fields:
                     "Branches": [
                         {
                             "branchID": 1,
-                            "name": "Iztapalapa",
-                            "zone": "Sur",
+                            "name": "Coyoacan",
+                            "zone": "San Francisco Downtown",
                             "image_url": "http://www.iztapalapa.cdmx.gob.mx/images/logos/logoizta.png"
                         }, {
                             "branchID": 2,
-                            "name": "Coyoacan",
-                            "zone": "Sur",
+                            "name": "Potrero Hill",
+                            "zone": "Bay Area",
                             "image_url": "http://coyoacan.df.gob.mx/wp-content/uploads/2015/11/fofacebooklogo.jpg"
                         }, {
                             "branchID": 3,
-                            "name": "Tlalpan",
-                            "zone": "Sur",
+                            "name": "Fishermans Wharf",
+                            "zone": "Pier Area",
                             "image_url": "https://pbs.twimg.com/profile_images/425327536365502464/8KTlnqQX_400x400.png"
                         }
                     ]
                 }
-                
+
+## Branch by ID [/spsbank/branch/{branchID}]
+
++ Parameters
+    + branchID: 1 (required, string) - Branch ID
+
+
 ### Get Downtown branches details [GET /spsbank/1]
 
 + Response 200 (application/json)
@@ -69,7 +69,7 @@ An SPS Financial has the following fields:
                     "zone": "Sur"
                 }
 
-### Get South SPSPharmacy details [GET /spsbank/3]
+### Get South details [GET /spsbank/3]
 
 + Response 200 (application/json)
 
@@ -80,6 +80,12 @@ An SPS Financial has the following fields:
                 }
                 
 
+## Branch by ZipCode [/spsbank/zipcode/{zipNumber}]
+
++ Parameters
+    + zipNumber: 1 (required, string) - zip number
+    
+    
 ### Get SPSBank by ZipCode 11000 [GET /spsbank/zipcode/11000]
 
 + Response 200 (application/json)
@@ -90,7 +96,7 @@ An SPS Financial has the following fields:
                     "zone": "Centro"
                 }
                 
-### Get SPSBank from ZipCode 09730 [GET /spsbank/zipcode/09730]
+### Get SPSBank by ZipCode 09730 [GET /spsbank/zipcode/09730]
 
 + Response 200 (application/json)
 
@@ -110,7 +116,12 @@ An SPS Financial has the following fields:
                     "zone": "Norte"
                 }
                 
-### Get credit product availability [GET /spsbank/product/credito]
+## Branch product availability [/spsbank/product/{productID}]
+
++ Parameters
+    + productID: 1 (required, string) - Product ID                
+                
+### Get credit product availability [GET /spsbank/product/credit]
 
 + Response 200 (application/json)
 
@@ -137,7 +148,7 @@ An SPS Financial has the following fields:
                     ]
                 }
                 
-### Get loan availability [GET /spsbank/product/prestamo]
+### Get loan availability [GET /spsbank/product/loan]
 
 + Response 200 (application/json)
 
@@ -175,7 +186,11 @@ An SPS Financial has the following fields:
                       }
                     ]
                 }
-                
+
+
+## Complains [/spsbank/complain]
+
+
 ### Submit a complain [POST /spsbank/complain]
 
 + Request (application/json)
@@ -191,7 +206,7 @@ An SPS Financial has the following fields:
         ]
         
 + Response 200 (application/json)
-
-                {
-                    "message": "Tu queja ha sido recibida"
-                }
+        
+        {
+            "message": "Your complain has been received"
+        }
