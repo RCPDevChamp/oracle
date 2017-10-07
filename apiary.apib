@@ -207,18 +207,42 @@ With this resource we can check the availability of an specific product in diffe
 
 + Request (application/json)
 
+    + Headers
+        
+            Authrorization: Baic ABCDE
+
+    + Body
+    
+            [
+                {
+                    "complain": {
+                    "branchID": "1",
+                    "title": "Bad service",
+                    "complainDescription": "I spent more than 3 hours and my problem was not solved"
+                    }
+                }
+            ]
+        
++ Response 201 (application/json)
+        
+        {
+            "message": "Your complain has been received"
+        }
+        
+        
++ Request (application/json)
+
         [
             {
               "order": {
-                "branchID": "1",
                 "title": "Bad service",
                 "complainDescription": "I spent more than 3 hours and my problem was not solved"
               }
             }
         ]
         
-+ Response 201 (application/json)
++ Response 500 (application/json)
         
         {
-            "message": "Your complain has been received"
+            "message": "There is an error in your request"
         }
