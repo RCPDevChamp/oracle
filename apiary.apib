@@ -18,6 +18,8 @@ An SPS Financial has the following fields:
 - Branch Zone
 - URL
 
+This resource will return the list of available branches that SPSBank has.
+
 ### Get all Branches [GET /spsbank]
 
 + Response 200 (application/json)
@@ -45,28 +47,34 @@ An SPS Financial has the following fields:
 
 ## Branch by ID [/spsbank/branch/{branchID}]
 
+With this resource we can get the details of an specific branck. Thse details are:
+
+- Branche Name
+- Branch Location
+- Branch logo
+
 + Parameters
     + branchID: 1 (required, string) - Branch ID
 
 
-### Get Downtown branches details [GET /spsbank/1]
+### Get Downtown details [GET /spsbank/1]
 
 + Response 200 (application/json)
 
                 {
-                    "branchID": 1,
-                    "name": "Iztacalco",
-                    "zone": "Sur"
+                    "branchName": "http://www.iztapalapa.cdmx.gob.mx/images/logos/logoizta.png",
+                    "branchName": "Iztacalco",
+                    "branchLocation": "Sur"
                 }
                         
-### Get North  details [GET /spsbank/2]
+### Get North details [GET /spsbank/2]
 
 + Response 200 (application/json)
 
                 {
-                    "branchID": 2,
-                    "name": "Coyoacan",
-                    "zone": "Sur"
+                    "branchLogo": "https://pbs.twimg.com/profile_images/425327536365502464/8KTlnqQX_400x400.png",
+                    "branchName": "Coyoacan",
+                    "branchLocation": "Sur"
                 }
 
 ### Get South details [GET /spsbank/3]
@@ -74,13 +82,15 @@ An SPS Financial has the following fields:
 + Response 200 (application/json)
 
                 {
-                    "branchID": 3,
-                    "name": "Coyoacan",
-                    "zone": "Sur"
+                    "branchName": "http://www.iztapalapa.cdmx.gob.mx/images/logos/logoizta.png",
+                    "branchName": "Iztacalco",
+                    "branchLocation": "Sur"
                 }
                 
 
 ## Branch by ZipCode [/spsbank/zipcode/{zipNumber}]
+
+With this resource we can query for branches within an specific zipCode
 
 + Parameters
     + zipNumber: 1 (required, string) - zip number
@@ -117,6 +127,8 @@ An SPS Financial has the following fields:
                 }
                 
 ## Branch product availability [/spsbank/product/{productID}]
+
+With this resource we can check the availability of an specific product in different branches
 
 + Parameters
     + productID: 1 (required, string) - Product ID                
@@ -199,13 +211,13 @@ An SPS Financial has the following fields:
             {
               "order": {
                 "branchID": "1",
-                "item": "aspirin",
-                "quantity": "3"
+                "title": "Bad service",
+                "complainDescription": "I spent more than 3 hours and my problem was not solved"
               }
             }
         ]
         
-+ Response 200 (application/json)
++ Response 201 (application/json)
         
         {
             "message": "Your complain has been received"
