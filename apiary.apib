@@ -1,244 +1,243 @@
 FORMAT: 1A
 
-# Farmacia en Linea
+# SPSBank. Institucion Financiera
 
-API para la interacción con el servicio de farmacia en linea
+SPS Bank API.
 
-## Sucursales
+## Branches [/spsbank]
 
-Una farmacia tiene los siguientes atributos.
+With this resource we can get the entire list of branches.
 
-- identificador de la sucursal
-- nombre de la sucursal
-- zona de la sucursal
+A branch is conformed by:
 
-### Obtener todas las sucursales [GET /farmacia/sucursales]
+- BranchID
+- Name
+- Zone
+- Logo
 
-Con este recurso...
+### Get all Branches [GET /spsbank]
 
 + Response 200 (application/json)
 
                 {
-                    "sucursales": [
+                    "Branches": [
                         {
-                            "idsucursal": 1,
-                            "nombre": "Farmacia Donceles del Centro",
-                            "zona": "Centro"
+                            "branchID": 1,
+                            "name": "Iztapalapa",
+                            "zone": "Sur",
+                            "image_url": "http://www.iztapalapa.cdmx.gob.mx/images/logos/logoizta.png"
                         }, {
-                            "idsucursal": 2,
-                            "nombre": "Farmacia PeriNorte",
-                            "zona": "Norte"
+                            "branchID": 2,
+                            "name": "Coyoacan",
+                            "zone": "Sur",
+                            "image_url": "http://coyoacan.df.gob.mx/wp-content/uploads/2015/11/fofacebooklogo.jpg"
                         }, {
-                            "idsucursal": 3,
-                            "nombre": "Farmacia Coyoacan",
-                            "zona": "Sur"
-                        }, {
-                            "idsucursal": 4,
-                            "nombre": "Farmacia Tacubaya",
-                            "zona": "Poniente"
-                        }, {
-                            "idsucursal": 5,
-                            "nombre": "Farmacia Sol Naciente",
-                            "zona": "Oriente"
+                            "branchID": 3,
+                            "name": "Polanco",
+                            "zone": "Centro",
+                            "image_url": "https://pbs.twimg.com/profile_images/425327536365502464/8KTlnqQX_400x400.png"
                         }
                     ]
                 }
 
+## Branch by ID [/spsbank/branch/{branchID}]
 
-## Sucursal por identificador [/farmacia/sucursal/{sucursal_id}]
+With this resource we can get the details of an specific branhk. Thse details are:
+
+- Branche Name
+- Branch Location
+- Branch logo
 
 + Parameters
-    + sucursal_id (number) - Identificador de la Sucursal
+    + branchID: 1 (required, string) - Branch ID
 
-                
-### Obtener detalles de farmacia Centro [GET /farmacia/sucursal/1]
+
+### Get Downtown details [GET /spsbank/1]
 
 + Response 200 (application/json)
 
                 {
-                    "idsucursal": 1,
-                    "nombre": "Farmacia Donceles del Centro",
-                    "zona": "Centro"
+                    "branchName": "http://www.iztapalapa.cdmx.gob.mx/images/logos/logoizta.png",
+                    "branchName": "Iztacalco",
+                    "branchLocation": "Sur"
                 }
                         
-### Obtener detalles de farmacia Norte [GET /farmacia/sucursal/2]
+### Get North details [GET /spsbank/2]
 
 + Response 200 (application/json)
 
                 {
-                    "idsucursal": 2,
-                    "nombre": "Farmacia PeriNorte",
-                    "zona": "Norte"
+                    "branchLogo": "https://pbs.twimg.com/profile_images/425327536365502464/8KTlnqQX_400x400.png",
+                    "branchName": "Coyoacan",
+                    "branchLocation": "Sur"
                 }
 
-### Obtener detalles de farmacia Sur [GET /farmacia/sucursal/3]
+### Get South details [GET /spsbank/3]
 
 + Response 200 (application/json)
 
                 {
-                    "idsucursal": 3,
-                    "nombre": "Farmacia Coyoacan",
-                    "zona": "Sur"
-                }
-                
-### Obtener detalles de farmacia Poniente [GET /farmacia/sucursal/4]
-
-+ Response 200 (application/json)
-
-                {
-                    "idsucursal": 4,
-                    "nombre": "FFarmacia Tacubaya",
-                    "zona": "Poniente"
+                    "branchName": "http://www.iztapalapa.cdmx.gob.mx/images/logos/logoizta.png",
+                    "branchName": "Iztacalco",
+                    "branchLocation": "Sur"
                 }
                 
-### Obtener detalles de farmacia Oriente [GET /farmacia/5]
 
-+ Response 200 (application/json)
+## Branch by ZipCode [/spsbank/zipcode/{zipNumber}]
 
-                {
-                    "idsucursal": 5,
-                    "nombre": "Farmacia Sol Naciente",
-                    "zona": "Oriente"
-                }
-                
-## Sucursal por Codigo Postal [/farmacia/sucursal/cp/{cpID}]
+With this resource we can query for branches within an specific zipCode
 
 + Parameters
-    + cpID (number) - Código Postal
-                
-### Obtener Farmacia cercana a CP 11000 [GET /farmacia/sucursal/cp/11000]
+    + zipNumber: 1 (required, string) - zip number
+    
+    
+### Get SPSBank by ZipCode 11000 [GET /spsbank/zipcode/11000]
 
 + Response 200 (application/json)
 
                 {
-                    "idsucursal": 1,
-                    "nombre": "Farmacia Donceles del Centro",
-                    "zona": "Centro"
+                    "branchID": 1,
+                    "name": "Lomas de Chapultepec-Montes",
+                    "zone": "Centro"
                 }
                 
-### Obtener detalles de farmacia Oriente [GET /farmacia/sucursal/cp/09730]
+### Get SPSBank by ZipCode 09730 [GET /spsbank/zipcode/09730]
 
 + Response 200 (application/json)
 
                 {
-                    "idsucursal": 5,
-                    "nombre": "Farmacia Sol Naciente",
-                    "zona": "Oriente"
+                    "branchID": 5,
+                    "name": "Vallejo",
+                    "zone": "Oriente"
                 }
                 
-### Obtener detalles de farmacia Oriente [GET /farmacia/sucursal/cp/54020]
+### Get SPSBank from ZipCode 54020 [GET /spsbank/zipcode/54020]
 
 + Response 200 (application/json)
 
                 {
-                    "idsucursal": 2,
-                    "nombre": "Farmacia PeriNorte",
-                    "zona": "Norte"
+                    "branchID": 2,
+                    "name": "Arboledas",
+                    "zone": "Norte"
                 }
+                
+## Branch product availability [/spsbank/product/{productID}]
 
-
-## Busqueda de medicamento  [/farmacia/inventario/{medicamento}]
+With this resource we can check the availability of an specific product in different branches
 
 + Parameters
-    + medicamento (string) - Nombre del Medicamento
+    + productID: 1 (required, string) - Product ID                
                 
-### Obtener inventario de Aspirinas [GET /farmacia/inventario/aspirina]
+### Get credit product availability [GET /spsbank/product/credit]
 
 + Response 200 (application/json)
 
                 {
-                  "sucursales": [
+                  "Branches": [
                       {
-                        "idsucursal": "1",
-                        "nombre": "Farmacia Donceles del Centro",
-                        "zona": "Centro",
-                        "cantidad": "7"
+                        "branchID": "1",
+                        "name": "SPSBank - Downtown",
+                        "zone": "Downtown",
+                        "quantity": "0"
                       },
                       {
-                        "idsucursal": "2",
-                        "nombre": "Farmacia PeriNorte",
-                        "zona": "Norte",
-                        "cantidad": "15"
+                        "branchID": "2",
+                        "name": "SPSBank - North",
+                        "zone": "North",
+                        "quantity": "0"
                       },
                       {
-                        "idsucursal": "3",
-                        "nombre": "Farmacia Coyoacan",
-                        "zona": "Sur",
-                        "cantidad": "4"
-                      },
-                      {
-                        "idsucursal": "4",
-                        "nombre": "Farmacia Tacubaya",
-                        "zona": "Poniente",
-                        "cantidad": "12"
-                      },
-                      {
-                        "idsucursal": "5",
-                        "nombre": "Farmacia Sol Naciente",
-                        "zona": "Oriente",
-                        "cantidad": "0"
+                        "branchID": "3",
+                        "name": "SPSBank - South",
+                        "zone": "South",
+                        "quantity": "4"
                       }
                     ]
                 }
                 
-### Obtener inventario de Paracetamol [GET /farmacia/inventario/paracetamol]
+### Get loan availability [GET /spsbank/product/loan]
 
 + Response 200 (application/json)
 
                 {
-                  "sucursales": [
+                  "Branches": [
                       {
-                        "idsucursal": "1",
-                        "nombre": "Farmacia Donceles del Centro",
-                        "zona": "Centro",
-                        "cantidad": "1"
+                        "branchID": "1",
+                        "name": "SPSBank - Downtown",
+                        "zone": "Downtown",
+                        "quantity": "1"
                       },
                       {
-                        "idsucursal": "2",
-                        "nombre": "Farmacia PeriNorte",
-                        "zona": "Norte",
-                        "cantidad": "6"
+                        "branchID": "2",
+                        "name": "SPSBank - North",
+                        "zone": "North",
+                        "quantity": "6"
                       },
                       {
-                        "idsucursal": "3",
-                        "nombre": "Farmacia Coyoacan",
-                        "zona": "Sur",
-                        "cantidad": "17"
+                        "branchID": "3",
+                        "name": "SPSBank - South",
+                        "zone": "South",
+                        "quantity": "17"
                       },
                       {
-                        "idsucursal": "4",
-                        "nombre": "Farmacia Tacubaya",
-                        "zona": "Poniente",
-                        "cantidad": "8"
+                        "branchID": "4",
+                        "name": "SPSBank - West",
+                        "zone": "West",
+                        "quantity": "8"
                       },
                       {
-                        "idsucursal": "5",
-                        "nombre": "Farmacia Sol Naciente",
-                        "zona": "Oriente",
-                        "cantidad": "7"
+                        "branchID": "5",
+                        "name": "SPSBank - East",
+                        "zone": "East",
+                        "quantity": "7"
                       }
                     ]
                 }
-                
-## Pedidos [/farmacia/pedido]
 
 
-### Crear Pedido [POST /farmacia/pedido]
+## Complains [/spsbank/complain]
 
+
+### Submit a complain [POST /spsbank/complain]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authrorization: Basic ABCDE
+
+    + Body
+    
+            [
+                {
+                    "complain": {
+                    "branchID": "1",
+                    "title": "Bad service",
+                    "complainDescription": "I spent more than 3 hours and my problem was not solved"
+                    }
+                }
+            ]
+        
++ Response 201 (application/json)
+        
+        {
+            "message": "Your complain has been received"
+        }
+        
+        
 + Request (application/json)
 
         [
             {
-              "pedido": {
-                "idSucursal": "1",
-                "producto": "aspirina",
-                "cantidad": "3"
+              "order": {
+                "title": "Bad service",
+                "complainDescription": "I spent more than 3 hours and my problem was not solved"
               }
             }
         ]
         
-+ Response 200 (application/json)
-
-                {
-                    "mensaje": "Su pedido se ha colocado correctamente. Pronto le avisaremos en qué horario recogerlo"
-                }
++ Response 500 (application/json)
+        
+        {
+            "message": "There is an error in your request"
+        }
