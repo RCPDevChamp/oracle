@@ -1,0 +1,11 @@
+{
+  "runtime": {
+    "majorVersion": "3.6.1"
+  },
+  "command": "sh ./start.sh",
+  "isClustered": false,
+  "release": {
+    "version": "1.0"
+  },
+  "notes": "Python App FBbot"
+}
